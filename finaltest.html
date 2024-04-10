@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sanchari's web poster
+</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
+
+</head>
+<!-- i cant think about the mobile version rn so lets debug everything else because there seems to be an ISSUE 
+within my script, i have too many brackets and now all my variables either get skipped ot it takes a double click
+for something to actually get chose in the variable list. so we clean that up -->
+
+<style>
+    body, html {
+      margin-left: 8%;
+      margin-right: 8%;
+      margin-top: 5%;
+      
+      
+    }
+    .toplayer{
+    opacity: 1;
+}
+
+    .event {
+            margin-bottom: 20px;
+        }
+
+    body{
+        font-family: 'Times New Roman', Times, serif;
+    }
+
+    body, h1, h2, h3, h4, h5, h6, p, a, span, div {
+      opacity: 0.7;}
+
+
+      h3, a{
+color: #000;
+text-decoration:none ;
+      }
+
+      .underline {
+            text-decoration: underline !important; /* Add underline */
+        }
+
+        .line-through {
+      text-decoration: line-through !important;
+    }
+
+    .overline {
+      text-decoration: overline !important;
+    }
+
+    .bold {
+      font-weight: bold !important;
+    }
+
+    .italic{
+        font-style: italic;
+    }
+
+    .caption0{
+        font-family: "Monaco";
+        font-size: 190%;
+        opacity: 1;
+        position: fixed;
+        top:10%;
+      left: 40%;
+    }
+      
+
+    .caption1{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:18%;
+      left:4%;
+    }
+
+    .resetcaption{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:6%;
+      left:22%;
+    }
+
+ 
+
+    .headingresetbutton {
+      position: fixed;
+      top:3%;
+      left:15%;
+      
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family: "Monaco";
+      text-transform: uppercase;
+      background-color: 	#f1c8ec;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+    .h1button {
+      position: fixed;
+      top:15%;
+      left:15%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family: "Monaco";
+      text-transform: uppercase;
+      background-color: 	#f1c8ec;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .h2button {
+      position: fixed;
+      top:27%;
+      left:15%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#f1c8ec;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+
+      .caption2{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:30%;
+      left: 24%;
+    }
+
+    .bgcolorbutton {
+      position: fixed;
+      top:15%;
+      left:33%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#ffdd7e;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .alltextcolorbutton {
+      position: fixed;
+      top:27%;
+      left:33%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#ffdd7e;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .headingcolorbutton {
+      position: fixed;
+      top:39%;
+      left:33%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#ffdd7e;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption3{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:53%;
+      left: 15%;
+    }
+
+    .alignbutton {
+      position: fixed;
+      top:50%;
+      left:20%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#74aeff;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .spacingbutton {
+      position: fixed;
+      top:62%;
+      left:20%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#74aeff;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption4{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:65%;
+      left: 26%;
+
+    }
+
+
+    .linksbutton {
+      position: fixed;
+      top:75%;
+      left:20%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#74aeff;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption5{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:79%;
+      left: 15%;
+    }
+
+    .fontcaption{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:44%;
+      left: 41%;
+    }
+
+
+    .monotypebutton {
+      position: fixed;
+      top:45%;
+      left:50%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#bf9fff;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption6{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:48%;
+      left: 56%;
+    }
+
+
+    .seriftypebutton {
+      position: fixed;
+      top:57%;
+      left:50%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#bf9fff;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption7{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:60%;
+      left: 56%;
+    }
+
+    .sansseriftypebutton {
+      position: fixed;
+      top:69%;
+      left:50%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#bf9fff;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption8{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:73%;
+      left: 56%;
+    }
+
+    .boldtypebutton {
+      position: fixed;
+      top:45%;
+      left:65%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#ff9f9f;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption9{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:49%;
+      left: 71%;
+    }
+
+    .italictypebutton {
+      position: fixed;
+      top:57%;
+      left:65%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#ff9f9f;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption10{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:60%;
+      left: 71%;
+    }
+
+    .underlinebutton {
+      position: fixed;
+      top:26%;
+      left:60%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#fcd7b9;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption11{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:29%;
+      left: 66%;
+    }
+
+    .overlinelinebutton {
+      position: fixed;
+      top:26%;
+      left:74%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#fcd7b9;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption12{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:30%;
+      left: 80%;
+    }
+
+    .linethrubutton {
+      position: fixed;
+      top:13%;
+      left:74%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	#fcd7b9;
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption13{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:17%;
+      left: 80%;
+    }
+
+
+ /* the print button is a little pice of shit, right now (pre-debug) it literally
+ traps you in an enless loop of print , where you cant close the pop up box ill cry*/
+
+
+    .printbutton {
+      position: fixed;
+      top:83%;
+      left:74%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: hwb(142 73% 8%);
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption14{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:87%;
+      left: 80%;
+    }
+
+
+    /* toolbox - fun button to code, super simple mid cooking idea where i thought of my webpage as two layers
+    instead of the preview being on the side
+    its at the back right
+    so what it the preview is the body and the keyboard is NOT part of it
+    so if i make a seperate divclass for the keyboard i can create a key to control that specific class  */
+
+    .toolboxbutton {
+      position: fixed;
+      top:70%;
+      left:74%;
+
+      padding: 20px 25px;
+      font-size: 20px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	hwb(142 73% 8%);
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;}
+
+      .caption15{
+        font-family: "Monaco";
+        opacity: 1;
+        position: fixed;
+        top:74%;
+      left: 80%;
+    }
+
+    .hidden {
+  display: none !important;
+}
+
+
+/* f the phonebutton i have beef with @media, it took me an hour to figure out
+why my button was still visible when the screen was big 
+ended up doing an extra @media for when the screen is big it doesnt shoe
+but there has to be a better cleaner way i just cant think of it yet */
+
+@media (max-width: 768px) {
+            body {
+                margin-left: 5%;
+                margin-right: 5%;
+                margin-top: 2%;
+            }
+
+            .toplayer {
+                display: none; 
+            }
+        }
+
+
+        
+
+
+    .phonebutton1 {
+      position: fixed;
+      top:8%;
+      left:75%;
+      display: flex;
+
+      padding: 18px 16px;
+      font-size: 15px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	hwb(140 40% 20% / 0.629);
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;
+      z-index: 99;
+    }
+
+
+
+      @media (min-width: 768px) {
+  .phonebutton1 {
+    display: none;
+  }
+}
+
+.phonebutton2 {
+      position: fixed;
+      top:18%;
+      left:75%;
+      display: flex;
+
+      padding: 18px 16px;
+      font-size: 15px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	hwb(349 40% 20% / 0.598);
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;
+      z-index: 99;
+    }
+
+
+
+      @media (min-width: 768px) {
+  .phonebutton2 {
+    display: none;
+  }
+}
+
+.phonebutton3 {
+      position: fixed;
+      top:28%;
+      left:75%;
+      display: flex;
+
+      padding: 18px 16px;
+      font-size: 15px;
+      font-family:"Monaco";
+      text-transform: uppercase;
+      background-color: 	hwb(237 40% 20% / 0.48);
+      color: rgb(0, 0, 0);
+      border-color: black;
+      border-radius: 13px;
+      border-right-width: 7px;
+      border-bottom-width: 9px;
+      cursor: pointer;
+      z-index: 99;
+    }
+
+
+
+      @media (min-width: 768px) {
+  .phonebutton3 {
+    display: none;
+  }
+}
+
+
+
+
+
+
+    </style>
+
+    <!-- top layer controlled by toolbox key -->
+
+<div class="toplayer">
+
+    <div class="caption0">&lt;design your own poster&gt;</div>
+    <div class="caption1">heading keys:-</div>
+            <button class="headingresetbutton">1</button>
+            <div class="resetcaption">- reset heading sizes</div>
+            <button class="h1button">2</button>
+            <button class="h2button">3</button>
+    
+    
+            <div class="caption2">color keys:-</div>
+            <button class="bgcolorbutton">B</button>
+            <button class="alltextcolorbutton">N</button>
+            <button class="headingcolorbutton">M</button>
+    
+    
+            <div class="caption3">align</div>
+            <button class="alignbutton">A</button>
+            <div class="caption4">spacing</div>
+            <button class="spacingbutton">S</button>
+            <div class="caption5">links</div>
+            <button class="linksbutton">D</button>
+    
+    
+    
+            
+    
+    
+            <div class="fontcaption">font keys:-</div>
+            <button class="monotypebutton">J</button>
+            <div class="caption6">mono</div>
+            <button class="seriftypebutton">K</button>
+            <div class="caption7">serif</div>
+            <button class="sansseriftypebutton">L</button>
+            <div class="caption8">sans-serif</div>
+    
+    
+            <button class="boldtypebutton">Z</button>
+            <div class="caption9">bold</div>
+            <button class="italictypebutton">X</button>
+            <div class="caption10">italic</div>
+    
+            <button class="underlinebutton">F</button>
+            <div class="caption11">underline</div>
+            <button class="overlinelinebutton">H</button>
+            <div class="caption12">overline</div>
+            <button class="linethrubutton">G</button>
+            <div class="caption13">line through</div>
+           
+    
+            <button class="printbutton">P</button>
+            <div class="caption14">print</div>
+    
+    
+            <button class="toolboxbutton">O</button>
+            <div class="caption15">open/close keyboard</div>
+        </div>  
+
+<!-- the preview controlled by the actual jquery functions -->
+
+        <body>
+            <button class="phonebutton1">&lt; &gt;</button>
+            <button class="phonebutton2">&lt; &gt;</button>
+            <button class="phonebutton3">&lt; &gt;</button>
+
+
+            <div id="titles">
+                <h3>Research Methods for Graphic Design</h3>
+                <h2>Fall 2023 Lecture Series</h2>
+              </div>
+              <br>
+        
+              <div id="speakers">
+        
+        
+                <section class="event" id="anther_kiley">
+                    <h3><a href="http://antherkiley.com/" target="_blank">Anther Kiley</a></h3>
+                    <div class="date">September 25, 2023</div>
+                    <div class="time">3:10pm</div>
+                    <div class="location">100 McCaul St., Room 230</div>
+                    <div class="info">
+                      <p> Anther Kiley is a designer, artist, and educator living and practicing in Providence, RI. He teaches in the graphic design department at RISD while maintaining a professional graphic design practice and a robust studio art practice. If that’s not enough he also runs Card Kits—a line of sustainable architectural children’s toys inspired by own childhood. His work explores the symbolic and poetic aspects of functionalist forms in the built environment through sculpture, photography, digital image making, and collage. </p>
+                      <div class="external_links">
+                        
+                      </div>
+                    </div> </section>
+        
+        
+        
+        
+                    <section class="event" id="takahashi_kuan">
+                        <h3><a href="https://emitakahashi.ca/" target="_blank">Emi Takahashi & Michelle Kuan</a></h3>
+                        <div class="date">October 23, 2023</div>
+                        <div class="time">3:10pm</div>
+                        <div class="location">100 McCaul St., Room 230</div>
+                        <div class="info">
+                          <p> Emi Takahashi is an artist and graphic designer based in Toronto. Her practice involves experimenting with alternative & analog forms of image-making, glyph & type design, archival projects, and multidisciplinary collaborations. Michelle Kuan is a Chinese Canadian artist, designer, and writer based in Montréal. Working between social practice, digital arts, and experimental publishing, she explores novel ways of documenting personal and collective narratives, the power of somatic memory, and decolonial archival futures. Their research laden practices operate both individually and collectively to create a mix of client-based and self-initiated work such as their here-there stories project devoted to collecting the stories of the asian canadian diaspora. </p>
+                        </div>
+                      </section>
+                      
+        
+        
+        
+        
+                      <section class="event" id="e_roon_kang">
+                        <h3><a href="https://eroonkang.com/" target="_blank">E Roon Kang</a></h3>
+                        <div class="date">November 13, 2023</div>
+                        <div class="time">3:10pm</div>
+                        <div class="location">Via Zoom</div>
+                        <div class="info">
+                          <p> E Roon Kang operates Math Practice, an interdisciplinary design and research studio with interest in studying, evaluating, and criticizing everyday systems and their pursuit of efficiency. He is also a co-founder of 908A a research initiative and consultancy that focuses on constructing new design tools. </p>
+                          <p> E Roon is the Chair and Associate Professor of Graphic Design at California College of the Arts. Previously, he served as the director of BFA Communication Design at Parsons School of Design, from 2017 to 2020. He was appointed as TED Senior Fellow and worked as a research fellow at SENSEable City Laboratory of MIT. </p>
+                        </div>
+                      </section>
+                      
+        
+        
+                      <section class="event" id="sebastian_aubin">
+                        <h3><a href="https://saubin.ca" target="_blank">Sebastian Aubin</a></h3>
+                        <div class="date">December 4, 2023</div>
+                        <div class="time">3:10pm</div>
+                        <div class="location">100 McCaul St., Room 230</div>
+                        <div class="info">
+                          <p> Aubin has done publications for numerous artists, organizations and art galleries in Winnipeg, Montréal and Ottawa, including Plug In ICA Close Encounters, the next 500 years, Terrance Houle, KC Adams, Carleton University Art Gallery, Thunder Bay Art Gallery, and Art Gallery of South Western Manitoba. Aubin is one of the founding members of the ITWÉ collective that is dedicated to research, creation, production and education of Aboriginal digital culture. Currently based in Montréal, QC, Sébastien Aubin is a proud member of the Opaskwayak Cree Nation in Manitoba. </p>
+                        </div>
+                      </section>
+        
+                      </div>
+        
+  
+        <!-- im not gonna lie this isnt even the only version this is like test 8 so i really did need to
+        clean up the script a lot because there were so many small mistakes, bugging me lmfao
+    but yeah this is as neat as it can get i guess first you have all variables neede, 
+    then the key events/ functions and then we end w the resonsive function -->
+
+<!-- tired :/ -->
+
+
+    <script>
+
+
+        $(document).ready(function() {
+  var monoFonts = ['Courier New', 'Monaco'];
+  var serifFonts = ['Palatino', 'Georgia', 'Garamond'];
+  var sansSerifFonts = ['Roboto', 'Helvetica', 'Verdana'];
+
+  var currentMonoFontIndex = 0;
+  var currentSerifFontIndex = 0;
+  var currentSansSerifFontIndex = 0;
+
+  var originalH2FontSize = $('h2').css('font-size');
+  var originalH3FontSize = $('h3').css('font-size');
+
+  var originalMarginBottom = parseInt($('.event').css('margin-bottom'));
+
+var isUnderlineEnabled = false;
+
+var isHeadingUnderlineEnabled = false;
+
+var isLineThroughEnabled = false;
+
+var isOverlineEnabled = false;
+
+var isBoldEnabled = false;
+
+var isItalicEnabled = false;
+
+var bgColors = ['#CCCCFF', '#EADDCA', '#7393B3', '#ECFFDC', '#FBCEB1', '#C9A9A6', '#B6D0E2'];
+var currentBgColorIndex = 0;
+
+var textColors = ['#6495ED', '#5D3FD3', '#808000', '#097969', '#770737', '#FFF5EE', '#36454F'];
+var currentTextColorIndex = 0;
+
+var headingColors = ['#6495ED', '#5D3FD3', '#808000', '#097969', '#770737', '#FFF5EE', '#36454F'];
+var currentheadingColorIndex = 0;
+
+var alignments = ['left', 'right', 'center', 'justify'];
+var currentAlignmentIndex = 0;
+
+$(document).keydown(function(event) {
+    if (event.key === "2"){
+        $('h2').css('font-size', '+=10px');
+    }
+
+    else if (event.key === "3") {
+                      
+                      $('h3').css('font-size', '+=10px');
+                    } 
+
+    else if (event.key === "1") {
+                      
+                      $('h2').css('font-size', originalH2FontSize);
+                      $('h3').css('font-size', originalH3FontSize);
+                    } 
+
+    else if (event.key === 'j') {
+                      
+                      var newFont = monoFonts[currentMonoFontIndex];
+                      $('body, #titles, #speakers').css('font-family', newFont);
+                      currentMonoFontIndex = (currentMonoFontIndex + 1) % monoFonts.length;
+                    }
+    else if (event.key === 'k') {
+                      
+                      var newFont = serifFonts[currentSerifFontIndex];
+                      $('body, #titles, #speakers').css('font-family', newFont);
+                      currentSerifFontIndex = (currentSerifFontIndex + 1) % serifFonts.length;
+                    }
+    else if (event.key === 'l') {
+                      
+                      var newFont = sansSerifFonts[currentSansSerifFontIndex];
+                      $('body, #titles, #speakers').css('font-family', newFont);
+                      currentSansSerifFontIndex = (currentSansSerifFontIndex + 1) % sansSerifFonts.length;
+                    } 
+    else if (event.key === 'b') {
+      
+      $('body').css('background-color', bgColors[currentBgColorIndex]);
+      currentBgColorIndex = (currentBgColorIndex + 1) % bgColors.length;
+    }
+
+    else if (event.key === 'n') {
+            
+            $('body').find('*').not('.toplayer, .toplayer *').css('color', textColors[currentTextColorIndex % textColors.length]);
+            currentTextColorIndex++;
+        }
+
+    else if (event.key === 'm') {
+
+    $(' h3 *, h3').css('color', headingColors[currentheadingColorIndex % headingColors.length]);
+    currentheadingColorIndex++;
+}    
+else if (event.key === 'a') {
+            
+            var newAlignment = alignments[currentAlignmentIndex];
+            $('h2, h3, body').css('text-align', newAlignment);
+            currentAlignmentIndex = (currentAlignmentIndex + 1) % alignments.length;
+        } 
+    else if (event.key === 's') {
+                
+                var currentMarginBottom = parseInt($('.event').css('margin-bottom'));
+                var newMarginBottom = currentMarginBottom + 5;
+
+                
+                $('.event').css('margin-bottom', newMarginBottom + 'px');
+
+                
+                if (newMarginBottom > originalMarginBottom + 20) {
+                   
+                    $('.event').css('margin-bottom', originalMarginBottom + 'px');
+                }
+            }
+
+    else if (event.key === 'f') {
+            
+            isHeadingUnderlineEnabled = !isHeadingUnderlineEnabled;
+
+            if (isHeadingUnderlineEnabled) {
+                
+                $('h2, h3').addClass('underline');
+            } else {
+               
+                $('h2, h3').removeClass('underline');
+            }}
+
+    else if (event.key === 'd') {
+            
+            var isUnderlineEnabled = $('a').hasClass('underline');
+            $('a').toggleClass('underline', !isUnderlineEnabled);
+        }
+
+    else if (event.key === 'g') {
+          
+          isLineThroughEnabled = !isLineThroughEnabled;
+          $('h2, h3').toggleClass('line-through', isLineThroughEnabled);
+        }
+
+        else if (event.key === 'h') {
+       
+       isOverlineEnabled = !isOverlineEnabled;
+       $('h2, h3').toggleClass('overline', isOverlineEnabled);
+     }
+      
+     else if (event.key === 'z') {
+        isBoldEnabled = !isBoldEnabled;
+
+        if (isBoldEnabled) {
+          
+          $('body, h2, h3').addClass('bold');
+        } else {
+          
+          $('body, h2, h3').removeClass('bold');
+        }
+      }
+
+      else if (event.key === 'x') {
+        isItalicEnabled = !isItalicEnabled;
+
+        if (isItalicEnabled) {
+          
+          $('body, h2, h3').addClass('italic');
+        } else {
+         
+          $('body, h2, h3').removeClass('italic');
+        }
+      }
+
+      else if (event.key === 'p') {
+    window.print();
+  }
+
+  else if (event.key === 'o') {
+      $('.toplayer').toggleClass('hidden');
+      $('.phonebutton1').toggleClass('hidden');
+      $('.phonebutton2').toggleClass('hidden');
+      $('.phonebutton3').toggleClass('hidden');
+      
+
+    }
+
+
+    
+
+    function handleResponsive() {
+  var windowWidth = $(window).width();
+
+  
+  if (windowWidth <= 768) {
+    
+    $('body').css({
+      'margin-left': '5%',
+      'margin-right': '5%',
+      'margin-top': '2%'
+    });
+
+  
+    $('.phonebutton1').show();
+  } else {
+   
+    $('body').css({
+      'margin-left': '8%',
+      'margin-right': '8%',
+      'margin-top': '5%'
+    });
+
+    
+    $('.phonebutton1').hide();
+  }
+}
+
+
+$(window).resize(handleResponsive);
+
+
+$(document).ready(handleResponsive);
+        });
+
+
+
+
+
+        // fucking tough
+
+$('.phonebutton1').click(function() {
+
+
+$('body').css('background-color', bgColors[currentBgColorIndex]);
+currentBgColorIndex = (currentBgColorIndex + 1) % bgColors.length;
+
+$('body').find('*').not('.toplayer, .toplayer *').css('color', textColors[currentTextColorIndex % textColors.length]);
+                currentTextColorIndex++;
+
+var newFont = serifFonts[currentSerifFontIndex];
+                              $('body, #titles, #speakers').css('font-family', newFont);
+                              currentSerifFontIndex = (currentSerifFontIndex + 1) % serifFonts.length;  
+
+                        
+
+});
+
+
+
+
+$('.phonebutton2').click(function() {
+
+
+$('body').css('background-color', bgColors[currentBgColorIndex]);
+currentBgColorIndex = (currentBgColorIndex + 1) % bgColors.length;
+
+$('body').find('*').not('.toplayer, .toplayer *').css('color', textColors[currentTextColorIndex % textColors.length]);
+                currentTextColorIndex++;
+
+var newFont = monoFonts[currentMonoFontIndex];
+                              $('body, #titles, #speakers').css('font-family', newFont);
+                              currentMonoFontIndex = (currentMonoFontIndex + 1) % monoFonts.length;
+
+                        
+
+});
+
+$('.phonebutton3').click(function() {
+
+
+$('body').css('background-color', bgColors[currentBgColorIndex]);
+currentBgColorIndex = (currentBgColorIndex + 1) % bgColors.length;
+
+$('body').find('*').not('.toplayer, .toplayer *').css('color', textColors[currentTextColorIndex % textColors.length]);
+                currentTextColorIndex++;
+
+var newFont = sansSerifFonts[currentSansSerifFontIndex];
+                              $('body, #titles, #speakers').css('font-family', newFont);
+                              currentSansSerifFontIndex = (currentSansSerifFontIndex + 1) % sansSerifFonts.length; 
+
+                        
+
+});
+
+   
+
+});
+
+
+
+
+
+</script>    
+
+<!-- bugs im still facing:- the background color function, there seems to be and inbuilt web thing (browser behaviour)
+that removes whatever background color is picked and prints on only white background -->
+<!-- theres something fucking wrong with the mobile buttons im gonna cry  but why WHY can they only be clicke on one 
+particualar area like phonebutton1 can only be clicked on in the bottom right space and phonebutton2 can only be clicked 
+on the top left space WHAT WHO SET THIS -->
+<!-- okay got it i inspected elemented and realised tat the h2,h3 elements were literally getting
+in the way, set the buttons z axis to 99 so its way above the body -->
+</body>
+
+
+
+
+</html>
